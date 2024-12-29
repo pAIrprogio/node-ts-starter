@@ -1,0 +1,41 @@
+{
+  "name": "node-ts-starter",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728",
+  "description": "A modern Node TS starter project",
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "node",
+    "ts",
+    "starter",
+    "project"
+  ],
+  "author": {
+    "name": "pAIrprog",
+    "url": "https://pairprog.io"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/pAIrprogio/node-ts-starter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pAIrprogio/node-ts-starter.git"
+  },
+  "scripts": {
+    "test:unit": "node --experimental-strip-types --experimental-test-snapshots --no-warnings --test src/**/*.test.ts",
+    "test:e2e": "node --experimental-strip-types --experimental-test-snapshots --no-warnings --test src/**/*.e2e.ts",
+    "test:lint": "yarn eslint . --cache",
+    "test:types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@types/eslint": "^9.6.1",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
+  }
+}

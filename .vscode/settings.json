@@ -1,0 +1,31 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "typescript.preferences.importModuleSpecifier": "project-relative",
+  "typescript.preferences.importModuleSpecifierEnding": "minimal",
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.test.ts"
+  },
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsc.autoDetect": "off",
+  "files.exclude": { "dist": true },
+  "search.exclude": { "dist": true },
+  "nodejs-testing.extensions": [
+    {
+      "extensions": ["mjs", "cjs", "js"],
+      "parameters": []
+    },
+    {
+      "extensions": ["mts", "cts", "ts"],
+      "parameters": ["--experimental-strip-types", "--no-warnings"]
+    }
+  ],
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "**/*.index.ts",
+    "**/index.ts",
+    "**/dist/**/*"
+  ]
+}
