@@ -39,7 +39,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: .eslintcache
-          key: eslint-cache-${{ hashFiles('**/*.{ts,js,mts,mjs,cts,cjs}') }}
+          key: eslint-cache-${{ hashFiles('eslint.config.mjs', '**/*.{js,mjs,cjs,ts,mts,cts}') }}
           restore-keys: |
             eslint-cache-
 
