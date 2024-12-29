@@ -2,50 +2,58 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Enable Corepack
-      run: |
-        corepack enable
-        corepack prepare yarn@4.5.2 --activate
+      - name: Enable Corepack
+        run: |
+          corepack enable
+          corepack prepare yarn@4.5.2 --activate
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22.9.0'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
 
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
 
-    - name: Cache yarn dependencies
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: yarn-cache-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          yarn-cache-
+      - name: Cache yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-cache-
 
-    - name: Install dependencies
-      run: yarn install
+      - name: Cache ESLint
+        uses: actions/cache@v3
+        with:
+          path: .eslintcache
+          key: eslint-cache-${{ hashFiles('**/*.{ts,js,mts,mjs,cts,cjs}') }}
+          restore-keys: |
+            eslint-cache-
 
-    - name: Build
-      run: yarn build
+      - name: Install dependencies
+        run: yarn install
 
-    - name: Run linting
-      run: yarn test:lint
+      - name: Run linting
+        run: yarn test:lint
 
-    - name: Run type checking
-      run: yarn test:types
+      - name: Run type checking
+        run: yarn test:types
 
-    - name: Run unit tests
-      run: yarn test:unit
+      - name: Run unit tests
+        run: yarn test:unit
+
+      - name: Run E2E tests
+        run: yarn test:e2e

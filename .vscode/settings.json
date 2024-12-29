@@ -15,10 +15,12 @@
   "search.exclude": { "dist": true },
   "nodejs-testing.extensions": [
     {
+      "filePatterns": ["**/*.{test,e2e}.*"],
       "extensions": ["mjs", "cjs", "js"],
       "parameters": []
     },
     {
+      "filePatterns": ["**/*.{test,e2e}.*"],
       "extensions": ["mts", "cts", "ts"],
       "parameters": ["--experimental-strip-types", "--no-warnings"]
     }
