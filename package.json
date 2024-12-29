@@ -27,7 +27,8 @@
     "test:unit": "node --experimental-strip-types --experimental-test-snapshots --no-warnings --test src/**/*.test.ts",
     "test:e2e": "node --experimental-strip-types --experimental-test-snapshots --no-warnings --test src/**/*.e2e.ts",
     "test:lint": "yarn eslint . --cache",
-    "test:types": "tsc --noEmit"
+    "test:types": "tsc --noEmit",
+    "test": "yarn test:types && yarn test:lint && yarn test:unit && yarn test:e2e"
   },
   "devDependencies": {
     "@eslint/js": "^9.16.0",
